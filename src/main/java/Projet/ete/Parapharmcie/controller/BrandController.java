@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/brands")
+@CrossOrigin(origins="http//localhost:4200")
 public class BrandController {
     private final BrandService brandService;
 
@@ -42,8 +43,12 @@ public class BrandController {
         }
     }
 
+    @PutMapping  ("/update")
+    public Brand UpdatePack (@RequestBody Brand brand )
+    {return brandService.UpdateBrand(brand);}
 
-    @PutMapping("/update/{id}")
+
+   /* @PutMapping("/update/{id}")
     public ResponseEntity<Brand> updateBrand(@PathVariable Long id, @RequestBody Brand updatedBrand) {
         Brand updated = brandService.updateBrand(id, updatedBrand);
 
@@ -52,7 +57,7 @@ public class BrandController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-    }
+    }*/
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteBrand(@PathVariable Long id) {

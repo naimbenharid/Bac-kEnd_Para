@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins="http//localhost:4200")
 @RequestMapping("/orders")
 public class OrderController {
     private final OrderService orderService;
@@ -24,6 +25,7 @@ public class OrderController {
     }
 
     @PostMapping("/addOrder")
+    @ResponseBody
     public ResponseEntity<OrderCustomer> createOrder(@RequestBody OrderCustomer order) {
         OrderCustomer savedOrder = orderService.saveOrder(order);
         return new ResponseEntity<>(savedOrder, HttpStatus.CREATED);

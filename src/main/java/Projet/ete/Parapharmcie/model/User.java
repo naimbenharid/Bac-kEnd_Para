@@ -1,5 +1,6 @@
 package Projet.ete.Parapharmcie.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,6 +16,7 @@ public class User {
     private String username;
     private String password;
     private String email;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+
+    @OneToMany
     private List<OrderCustomer> orders = new ArrayList<>();
 }

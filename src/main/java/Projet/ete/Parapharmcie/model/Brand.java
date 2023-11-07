@@ -16,10 +16,10 @@ public class Brand {
     private String name;
     private String description;
 
+
+    @OneToMany
     @Column(name = "products")
-    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
-   // @JsonManagedReference
     private List<Product> products = new ArrayList<>();
 
 

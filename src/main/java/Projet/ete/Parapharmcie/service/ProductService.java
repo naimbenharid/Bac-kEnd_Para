@@ -16,8 +16,10 @@ public class ProductService {
         this.productRepo=productRepo ;
     }
     public Product createProduct(Product product) {
-        return productRepo.save(product);
+    return productRepo.save(product);
     }
+
+
     public List<Product> getAllProducts() {
         return productRepo.findAll();
     }

@@ -53,16 +53,9 @@ public class CategoryController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Category> updateCategory(@PathVariable Long id, @RequestBody Category updatedCategory) {
-        Category updated = categoryService.updateCategory(id, updatedCategory);
-
-        if (updated != null) {
-            return new ResponseEntity<>(updated, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
+    @PutMapping  ("/update")
+    public Category UpdateCategory (@RequestBody Category category )
+      {return categoryService.UpdateCategory(category);}
 
     @DeleteMapping("/deleteCategory/{id}")
     public ResponseEntity<Void> deleteCategory(@PathVariable Long id) {

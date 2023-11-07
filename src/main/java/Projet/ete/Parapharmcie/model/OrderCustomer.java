@@ -1,10 +1,12 @@
 package Projet.ete.Parapharmcie.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 @Data
 @Entity
@@ -13,17 +15,19 @@ public class OrderCustomer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDateTime orderDate;
+    private Date orderDate;
     private String deliveryAddress;
     private double totalAmount;
-    @Enumerated(EnumType.STRING)
+    @Enumerated
     private OrderStatus orderStatus;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany
+    @JsonIgnore
     private List<OrderItem> orderItems = new ArrayList<>();
 
 }

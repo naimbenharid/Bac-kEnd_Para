@@ -32,7 +32,13 @@ public class BrandService {
     public List<Brand> getAllBrands() {
         return brandRepository.findAll();
     }
-    public Brand updateBrand(Long id, Brand updatedBrand) {
+
+    public Brand UpdateBrand (Brand brand)
+    {return brandRepository.save(brand);}
+
+
+
+   /* public Brand updateBrand(Long id, Brand updatedBrand) {
         Brand existingBrand = brandRepository.findById(id).orElse(null);
 
         if (existingBrand != null) {
@@ -44,7 +50,7 @@ public class BrandService {
         }
 
         return null;
-    }
+    }*/
 
 
 }
