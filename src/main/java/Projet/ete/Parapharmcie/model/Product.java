@@ -24,14 +24,14 @@ public class Product  {
 
     @OneToMany
     @JsonIgnore
-    private List<Image> images = new ArrayList<>();
+    private List<Image> images ;
 
     @ManyToOne
     private Category category;
 
     @OneToMany
     @JsonIgnore
-    private List<OrderItem> orderItems= new ArrayList<>();
+    private List<OrderItem> orderItems ;
 
 
 

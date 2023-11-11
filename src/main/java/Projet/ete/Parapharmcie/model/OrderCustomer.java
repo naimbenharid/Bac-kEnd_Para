@@ -17,7 +17,7 @@ public class OrderCustomer {
     private Long id;
     private Date orderDate;
     private String deliveryAddress;
-    private double totalAmount;
+    private Integer totalAmount;
     @Enumerated
     private OrderStatus orderStatus;
 

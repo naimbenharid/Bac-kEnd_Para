@@ -18,7 +18,7 @@ public class Category {
 
     @OneToMany
     @JsonIgnore
-    private List<Product> products;
+    private List<Product> products  = new ArrayList<>();
 
 
 }
