@@ -15,15 +15,16 @@ public class OrderCustomer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date orderDate;
     private String deliveryAddress;
-    private Integer totalAmount;
+    private Date orderDate;
     @Enumerated
     private OrderStatus orderStatus;
+    private String fullName ;
+    private String phoneNumber ;
+    private Integer totalAmount;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonIgnore
     private User user;
 
     @OneToMany

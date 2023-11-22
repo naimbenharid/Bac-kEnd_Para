@@ -1,51 +1,16 @@
 package Projet.ete.Parapharmcie.service;
 
 import Projet.ete.Parapharmcie.model.Image;
-import Projet.ete.Parapharmcie.model.Product;
-import Projet.ete.Parapharmcie.repo.ImageRepo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
+import java.io.IOException;
 
-@Service
-public class ImageService {
-    private final ImageRepo imageRepository ;
+public interface ImageService {
 
-    @Autowired
-    public ImageService(ImageRepo imageRepository) {
-        this.imageRepository = imageRepository;
-    }
+    Image uplaodImage(MultipartFile file) throws IOException;
+    Image getImageDetails(Long id) throws IOException;
+    ResponseEntity<byte[]> getImage(Long id) throws IOException;
+    void deleteImage(Long id) ;
 
-    public Image saveImage(Image image) {
-        return imageRepository.save(image);
-    }
-    public Image updateImage(Long id, Image updatedImage) {
-        Image existingImage = imageRepository.findById(id).orElse(null);
-
-        if (existingImage != null) {
-            existingImage.setUrl(updatedImage.getUrl());
-
-
-            return imageRepository.save(existingImage);
-        }
-
-        return null;
-    }
-
-    public void deleteImage(Long id) {
-        imageRepository.deleteById(id);
-    }
-
-    public List<Image> getAllImages() {
-        return imageRepository.findAll();
-    }
-
-    public List<Image> getImagesByProduct(Product product) {
-        return imageRepository.findByProduct(product);
-    }
-
-    public Image getImageById(Long id) {
-        return imageRepository.findImageById(id);
-    }
 }

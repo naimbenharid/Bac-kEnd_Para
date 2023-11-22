@@ -1,5 +1,6 @@
 package Projet.ete.Parapharmcie.service;
 
+import Projet.ete.Parapharmcie.model.Brand;
 import Projet.ete.Parapharmcie.model.OrderCustomer;
 import Projet.ete.Parapharmcie.model.OrderStatus;
 import Projet.ete.Parapharmcie.model.User;
@@ -15,9 +16,8 @@ public class OrderService {
     private final OrderRepo orderRepository;
 
     @Autowired
-    public OrderService(OrderRepo orderRepository) {
-        this.orderRepository = orderRepository;
-    }
+    public OrderService(OrderRepo orderRepository)
+         {this.orderRepository = orderRepository;}
 
     public OrderCustomer saveOrder(OrderCustomer order) {
         return orderRepository.save(order);
@@ -46,18 +46,11 @@ public class OrderService {
     public List<OrderCustomer> findOrderByOrderDate(LocalDateTime orderDate) {
         return orderRepository.findByOrderDate(orderDate);
     }
-    public OrderCustomer updateOrder(Long id, OrderCustomer updatedOrder) {
-        OrderCustomer existingOrder = orderRepository.findById(id).orElse(null);
+    public OrderCustomer UpdateOrder (OrderCustomer order)
+    {return orderRepository.save(order);}
 
-        if (existingOrder != null) {
-            existingOrder.setOrderStatus(updatedOrder.getOrderStatus());
-            // Mise à jour d'autres propriétés si nécessaire
+       // La commande n'a pas été trouvée
 
-            return orderRepository.save(existingOrder);
-        }
-
-        return null; // La commande n'a pas été trouvée
-    }
 /*
     public double getTotalAmount(Order order) {
         return order.getOrderItems().stream()

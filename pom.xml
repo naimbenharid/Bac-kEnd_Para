@@ -53,7 +53,12 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-crypto</artifactId>
+            <version>5.7.3</version>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<plugins>
@@ -70,6 +75,8 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>Back-End-Para</finalName>
+
 	</build>
 
 </project>

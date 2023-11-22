@@ -2,12 +2,17 @@ package Projet.ete.Parapharmcie.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Table
 public class Product  {
@@ -20,11 +25,11 @@ public class Product  {
     private Integer qte ;
 
     @ManyToOne
+
     private Brand brand;
 
-    @OneToMany
-    @JsonIgnore
-    private List<Image> images ;
+    @OneToOne
+    private Image image;
 
     @ManyToOne
     private Category category;

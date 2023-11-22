@@ -65,16 +65,10 @@ public class OrderController {
         List<OrderCustomer> orders = orderService.getOrdersByStatus(status);
         return new ResponseEntity<>(orders, HttpStatus.OK);
     }
-    @PutMapping("updateOrder/{id}")
-    public ResponseEntity<OrderCustomer> updateOrder(@PathVariable Long id, @RequestBody OrderCustomer updatedOrder) {
-        OrderCustomer updated = orderService.updateOrder(id, updatedOrder);
+    @PutMapping  ("/update")
+    public OrderCustomer UpdateCategory (@RequestBody OrderCustomer order )
+    {return orderService.UpdateOrder(order);}
 
-        if (updated != null) {
-            return new ResponseEntity<>(updated, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
 
     @DeleteMapping("/deleteOrder/{id}")
     public ResponseEntity<Void> deleteOrder(@PathVariable Long id) {

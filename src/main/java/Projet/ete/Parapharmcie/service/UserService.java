@@ -3,6 +3,7 @@ package Projet.ete.Parapharmcie.service;
 import Projet.ete.Parapharmcie.model.User;
 import Projet.ete.Parapharmcie.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,29 +16,39 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
-    }
-    public User getUserById(Long id) {
-        return userRepository.findById(id).orElse(null);
-    }
-    public User getUserByUsername(String username) {
-        return userRepository.findByUsername(username);
-    }
-    public User createUser(User user) {
+
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+    public User signUp(User user) {
+        // Vérifier si l'utilisateur existe déjà
+        if (userRepository.findByUseremail(user.getUseremail()) != null) {
+            throw new RuntimeException("'utilisateur déjà pris");
+        }
+
+        // Encoder le mot de passe avant de l'enregistrer
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        // Enregistrer l'utilisateur
         return userRepository.save(user);
     }
 
-    public void updateUser(Long id, User updatedUser) {
-        User user = getUserById(id);
-        if (user != null) {
-            user.setUsername(updatedUser.getUsername());
-            user.setPassword(updatedUser.getPassword());
-            user.setEmail(updatedUser.getEmail());
-            userRepository.save(user);
+    public User signIn(String email, String password) {
+        // Trouver l'utilisateur par son nom d'utilisateur
+        User user = userRepository.findByUsername(email);
+
+        // Vérifier si l'utilisateur existe et si le mot de passe est correct
+        if (user != null && passwordEncoder.matches(password, user.getPassword())) {
+            return user;
+        } else {
+            throw new RuntimeException("Nom d'utilisateur ou mot de passe incorrect");
         }
+
     }
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
+    public User findByUseremail(String email) {
+        return userRepository.findByUseremail(email);
     }
+
+
 }

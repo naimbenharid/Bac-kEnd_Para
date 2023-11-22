@@ -12,7 +12,6 @@ public class Brand {
     @Id
     @GeneratedValue
     private Long id;
-
     private String name;
     private String description;
 

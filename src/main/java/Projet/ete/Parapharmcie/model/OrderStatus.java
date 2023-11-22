@@ -1,11 +1,11 @@
 package Projet.ete.Parapharmcie.model;
 
 public enum OrderStatus {
-    PENDING("Pending"),
-    PROCESSING("Processing"),
-    SHIPPED("Shipped"),
-    DELIVERED("Delivered"),
-    CANCELLED("Cancelled");
+    PENDING("PENDING"),
+    PROCESSING("PROCESSING"),
+    SHIPPED("SHIPPED"),
+    DELIVERED("DELIVERED"),
+    CANCELLED("CANCELLED");
 
     private final String displayName;
 

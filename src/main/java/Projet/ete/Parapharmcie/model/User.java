@@ -14,8 +14,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
+    private String lastname;
     private String password;
-    private String email;
+    private String useremail;
 
     @OneToMany
     private List<OrderCustomer> orders = new ArrayList<>();
